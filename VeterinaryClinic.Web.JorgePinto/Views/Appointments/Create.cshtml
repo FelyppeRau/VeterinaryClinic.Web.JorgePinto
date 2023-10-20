@@ -1,0 +1,217 @@
+﻿@model IEnumerable<VeterinaryClinic.Web.JorgePinto.Data.Entities.AppointmentDetailTemp>
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Create</h3>
+
+@*<h4>Appointment</h4>*@
+
+
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <p>
+            <a asp-action="AddAppointment" class="btn btn-outline-success"><i class="fa-regular fa-calendar-plus"></i>  Add Appointment</a>
+        </p>
+    </div>
+    <div class="search-container" style="display: flex; align-items: center;">
+        <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearchInput()">
+        <button type="button" id="searchButton" class="btn btn-outline-primary" style="font-style: italic; margin-left: 10px;"> <i class="fa-solid fa-magnifying-glass"></i>  Search</button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            @if (this.User.IsInRole("Medic") || this.User.IsInRole("Owner"))  // A função IsInRole não funciona para verificar várias funções ao mesmo tempo. @if (this.User.IsInRole("Admin, Medic")
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.User.FullName)
+                </th>
+            }            
+            <th>                
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Animal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduleDate)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ScheduleDate)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Owner.CellPhone)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>                                
+                <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Owner.FullName)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Animal.FullAnimal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medic.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScheduleDate)
+                </td>
+               @* <td>
+                    @Html.DisplayFor(modelItem => item.ScheduleDate)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner.CellPhone)
+                </td>                
+
+                <td id="@item.Id">
+                    <button data-item-id="@item.Id" class="btn btn-outline-primary btnConfirm" data-toggle="modal" data-target="#confirmDialog"><i class="fa-regular fa-calendar-check"></i>  Confirm</button>
+                    @*<a data-item-id="@item.Id" class="btn btn-outline-primary btnConfirm" data-toggle="modal" data-target="#confirmDialog"><i class="fa-regular fa-calendar-check"></i>  Confirm</a>*@
+                    @*<a asp-action="ConfirmAppointment" asp-route-id="@item.Id" class="btn btn-outline-primary" id="btnConfirm"><i class="fa-regular fa-calendar-check"></i>  Confirm</a>*@
+                    @*<a asp-action="ConfirmAppointment" class="btn btn-outline-primary" id="btnConfirm"><i class="fa-regular fa-calendar-check"></i>  Confirm</a>*@
+                    <a asp-action="DeleteItem" asp-route-id="@item.Id" class="btn btn-outline-danger" id="btnDeleteItem"><i class="fa-regular fa-trash-can"></i> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-warning small">
+    <p>
+        @ViewBag.ErrorMessage
+    </p>
+</div>
+
+@******************************** POUP-UP CONFIRMAÇÃO CONFIRM ***********************************@
+
+<div id="confirmDialog" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirm Appointment</h4>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to Confirm the Appointment?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnYesConfirm">Yes</button>
+                <button type="button" class="btn btn-success" id="btnNoConfirm">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@******************************** POUP-UP CONFIRMAÇÃO DELETE ***********************************@
+
+<div id="deleteDialog" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Appointment</h4>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to Delete the Apppointment?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnYesDelete">Yes</button>
+                <button type="button" class="btn btn-success" id="btnNoDelete">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@******************************** Java Script POUP-UP CONFIRMAÇÃO DELETE E CONFIRM ***********************************@
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+                        
+            var itemId; // Variável para armazenar o ID do item
+
+            // Evento ao clicar nos botões Confirmar
+            $(".btnConfirm").click(function () {
+                itemId = $(this).data("item-id"); // Armazena o ID do item
+                $("#confirmDialog").modal("show"); // Mostra o modal de confirmação
+            });
+
+            // Evento ao clicar no botão "Sim" no modal de confirmação
+            $("#btnYesConfirm").click(function () {
+                // Redireciona para ConfirmAppointment com o ID do item
+                window.location.href = "/Appointments/ConfirmAppointment/" + itemId;
+            });
+
+            // Evento ao clicar no botão "Não" no modal de confirmação
+            $("#btnNoConfirm").click(function () {
+                $("#confirmDialog").modal("hide"); // Esconde o modal de confirmação
+            });
+           
+
+            $("a[id*=btnDeleteItem]").click(function () {
+                debugger;
+                id = $(this).parent()[0].id;  // Deletamos pelo Id
+                $("#deleteDialog").modal("show");
+                return false;
+            });
+
+            $("#btnNoDelete").click(function () {
+                $("#deleteDialog").modal("hide"); // se clica no "NO" esconde a caixa (hide)
+                return false; // bloquia a Action (no caso não confirma a ordem caso não cliquemos no yes)
+            });
+
+            $("#btnYesDelete").click(function () {
+                window.location.href = "/Appointments/DeleteItem/" + id; // Aqui chamamos a Action (linha 49)
+            });
+        });
+
+        function handleSearchInput() {
+            var searchTerm = $('#searchInput').val().toLowerCase();
+            $('.table tbody tr').each(function () {
+                var animalRow = $(this);
+                var textToSearch = animalRow.text().toLowerCase();
+                if (textToSearch.indexOf(searchTerm) === -1) {
+                    animalRow.hide();
+                } else {
+                    animalRow.show();
+                }
+            });
+
+            if (searchTerm === '') {
+                $('.table tbody tr').show();
+            }
+        }
+
+        $(document).ready(function () {
+            $('#searchButton').click(function () {
+                handleSearchInput();
+            });
+
+            $('#searchInput').on('input', function () {
+                handleSearchInput();
+            });
+        });
+
+    </script>
+}

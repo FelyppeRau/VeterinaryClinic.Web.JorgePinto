@@ -1,0 +1,36 @@
+﻿@model VeterinaryClinic.Web.JorgePinto.Models.AnimalViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Edit</h3>
+
+<h4>Animal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageId" />
+            
+            <partial name="_AnimalsCE" />
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary"><i class="fa-regular fa-floppy-disk"></i> Save</button>
+                <a asp-action="Index" class="btn btn-outline-success"><i class="fa-solid fa-rotate-left"></i> Back to List</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        
+        <img src="@Url.Content(Model.ImageFullPath)" alt="Image" style="width:200px; height:350px; max-width:100%; height: auto">
+        
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

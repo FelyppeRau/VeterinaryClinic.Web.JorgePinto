@@ -1,0 +1,51 @@
+﻿@model VeterinaryClinic.Web.JorgePinto.Data.Entities.Medic
+
+
+<div class="row">
+    <div class="col-md-8">
+
+        <dl class="row">
+            <dt class="col-sm-3 text-right">
+                @Html.DisplayNameFor(model => model.OMV)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.OMV)
+            </dd>
+            <dt class="col-sm-3 text-right">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt class="col-sm-3 text-right">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt class="col-sm-3 text-right">
+                @Html.DisplayNameFor(model => model.CellPhone)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.CellPhone)
+            </dd>
+            <dt class="col-sm-3 text-right">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-3 text-right">
+                @Html.DisplayNameFor(model => model.ImageId)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ImageId)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-4">
+
+        <img src="@Url.Content(Model.ImageFullPath)" alt="Image" style="width:200px; height:350px; max-width:100%; height:auto">
+
+    </div>
+</div>

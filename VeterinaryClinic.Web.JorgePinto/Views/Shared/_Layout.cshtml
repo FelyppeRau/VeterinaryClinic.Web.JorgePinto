@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - All Pets Welcome</title>
+    <link rel="icon" type="image/png" href="~/images/icon_vet_clinic.jpg" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info border-bottom box-shadow mb-3">
+            @*"navbar-fixed" mantém a nav fixa*@
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/icon_vet_clinic.jpg" alt="Imagem" class="img-fluid" /> @* Vet Clinic *@</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (this.User.Identity.IsAuthenticated) // Verifica se o User está Autenticado / Está a aparecer do LADO ESQUERDO. Neste caso todos as nav-item só aparecerão para os usuários logados
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house-medical-flag fa-sm" style="color: #263c54;"></i>
+                                Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Medics" asp-action="Index"><i class="fa-solid fa-stethoscope fa-sm" style="color: #263c54;"></i>
+                                Medics    
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Owners" asp-action="Index"><i class="fa-solid fa-users fa-sm" style="color: #263c54;"></i>
+                                Owners    
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Animals" asp-action="Index"><i class="fa-solid fa-paw fa-sm" style="color: #263c54;"></i>
+                                Animals    
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Schedules" asp-action="Index"><i class="fa-regular fa-calendar-days fa-sm" style="color: #263c54;"></i>
+                                Schedules    
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Rooms" asp-action="Index"><i class="fa-regular fa-hospital fa-sm" style="color: #263c54;"></i>
+                                Rooms    
+                                </a>
+                            </li>
+                        }
+                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Medic") || this.User.IsInRole("Owner"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Appointments" asp-action="Index"><i class="fa-regular fa-calendar-check" style="color: #263c54;"></i>
+                                Appointments    
+                                </a>
+                            </li>
+                        }
+
+                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Admin")) // Verifica se o User está Autenticado e se é o Admin!!  ***** SÓ APARECE O MENU PARA O ADMIN *****
+                        {
+                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @* <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Users</a></li> *@ @*************ASP-CONTROLLER***********************@
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Medics" asp-action="Index"><i class="fa-solid fa-stethoscope"></i>  Medics</a></li> @*************ASP-CONTROLLER***********************@
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Owners" asp-action="Index"><i class="fa-solid fa-user"></i>  Owners</a></li> @*************ASP-CONTROLLER***********************@
+                                    @* <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Anonymous</a></li> *@ @*************ASP-CONTROLLER***********************  *@
+                                 </ul> 
+                             </li> 
+                        }
+                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Medic")) 
+                        {
+                            <a class="nav-link" asp-area="" asp-controller="Medics" asp-action="Index"><i class="fa-solid fa-stethoscope"></i>  Medic</a>
+                        }
+                        @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Owner")) 
+                        {
+                            <a class="nav-link" href="#">Owner</a>
+                            @* <a class="nav-link" asp-area="" asp-controller="Owners" asp-action="Index"><i class="fa-solid fa-user"></i>  Owner</a> *@
+                        }
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @*// Está a aparecer do LADO DIREITO*@
+                        @if (this.User.Identity.IsAuthenticated) // Verifica se o User está Autenticado
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+
+
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    &copy; 2023 - VeterinaryClinic.Web.JorgePinto - <a asp-area="" asp-controller="Home" asp-action="Home">Developed by J. Felyppe Rau Pinto</a>
+                </div>
+                <div class="col text-right">
+                    <a id="phone-icon" class="phone-icon"><i class="fa-solid fa-phone mr-4"></i></a>
+                    <a href="https://www.cinel.pt/appv2" target="_blank"><i class="fa-solid fa-graduation-cap mr-4"></i></a>
+                    <a href="https://github.com/FelyppeRau" target="_blank"><i class="fa-brands fa-github mr-4"></i></a>
+                    <a href="https://www.linkedin.com/in/j-felyppe-rau-65540527/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+       
+        
+
+         
+        //  *** CINEL PHONE NUMBER ***
+
+        // Obtenha o elemento do número de telefone e do ícone
+        const phoneIcon = document.querySelector('.phone-icon'); // Use .querySelector para selecionar por classe
+        const phoneNumber = '214 967 700'; // Substitua pelo número de telefone desejado
+
+        // Crie o tooltip com o número de telefone
+        const tooltip = document.createElement('span');
+        tooltip.className = 'tooltiptext';
+        tooltip.textContent = phoneNumber;
+
+        // Adicione o tooltip ao elemento do ícone quando o mouse entra
+        phoneIcon.addEventListener('mouseenter', () => {
+            phoneIcon.appendChild(tooltip);
+        });
+
+        // Remova o tooltip quando o mouse sai
+        phoneIcon.addEventListener('mouseleave', () => {
+            phoneIcon.removeChild(tooltip);
+        });
+
+
+        // Função para adicionar uma mensagem à janela de chat
+        function addMessage(message, isUser) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = isUser ? 'user-message' : 'bot-message';
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+
+        ////  *** CHAT ***
+
+        //// Função para processar a entrada do usuário e gerar uma resposta
+        //function processUserInput() {
+        //    const userInput = document.getElementById('user-input');
+        //    const userMessage = userInput.value.trim();
+
+        //    if (userMessage !== '') {
+        //        addMessage(`Você: ${userMessage}`, true);
+
+        //        // Aqui você pode adicionar lógica para gerar uma resposta do chatbot.
+        //        // Por exemplo, você pode usar uma API de chatbot para obter respostas.
+
+        //        // Exemplo de resposta do chatbot (substitua por sua própria lógica):
+        //        setTimeout(() => {
+        //            const botResponse = 'Olá! Como posso ajudar?';
+        //            addMessage(`Chatbot: ${botResponse}`, false);
+        //        }, 1000);
+
+        //        userInput.value = '';
+        //    }
+        //}
+
+        //// Lidar com o clique no botão "Enviar"
+        //const sendButton = document.getElementById('send-button');
+        //sendButton.addEventListener('click', processUserInput);
+
+        //// Lidar com a tecla "Enter" no campo de entrada
+        //const userInput = document.getElementById('user-input');
+        //userInput.addEventListener('keydown', (event) => {
+        //    if (event.key === 'Enter') {
+        //        processUserInput();
+        //    }
+        //});
+
+        //// Inicialize o chat com uma saudação inicial
+        //window.addEventListener('load', () => {
+        //    const initialGreeting = 'Bem-vindo ao chat! Como posso ajudar?';
+        //    addMessage(`Chatbot: ${initialGreeting}`, false);
+        //});
+
+    </script>
+
+
+    @*  *** MEDICAL CARD ****@ @*RETIRADO POR CAUSA DA DROP DOWN LIST DOS ROLES QUE NÃO ESTAA A FUNCIONAR*@
+    
+    @*<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>*@
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

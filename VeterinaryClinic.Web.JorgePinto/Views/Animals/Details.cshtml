@@ -1,0 +1,20 @@
+﻿@model VeterinaryClinic.Web.JorgePinto.Data.Entities.Animal
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Details</h3>
+
+<h4>Animal</h4>
+<div>
+    <hr />
+
+    <partial name="_AnimalsDD" />
+
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+    <a asp-action="Index" class="btn btn-outline-success"><i class="fa-solid fa-rotate-left"></i> Back to List</a>
+</div>

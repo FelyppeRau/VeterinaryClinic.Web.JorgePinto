@@ -1,0 +1,398 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: #1b6ec2;
+}
+
+#5fa1d3
+
+.btn-primary {
+    color: #fff;
+    background-color: #5fa1d3;
+    border-color: #5fa1d3;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #5fa1d3;
+    border-color: #5fa1d3;
+}
+
+/* Inserido por mim para fixar a nav*/
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Para garantir que a barra de navegação esteja acima de outros elementos */
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.bg-lightblue {
+    background-color: #ADD8E6;
+    /* Outros estilos se necessário */
+}
+
+
+
+
+/* Forbidden Page
+-------------------------------------------------- */
+
+.wrapper {
+    position: relative;
+    max-width: 1298px;
+    height: auto;
+    margin: 2em auto 0 auto;
+    background: transparent url("https://www.dropbox.com/s/qq5n8w99q40wtrg/wood-fence.png?raw=1") no-repeat center top 24em;
+}
+
+/* https://www.vecteezy.com/vector-art/237238-dog-family-colored-doodle-drawing */
+.box {
+    max-width: 70%;
+    min-height: 600px;
+    margin: 0 auto;
+    padding: 1em 1em;
+    text-align: center;
+    background: transparent url("https://www.dropbox.com/s/ft9vhk6720t1k86/dog-family-colored-doodle-drawing.jpg?raw=1") no-repeat top 10em center;
+}
+
+.h2-forbidden {
+    margin: 0 font-size: 8em;
+    text-shadow: 0 0 6px #8b4d1a;
+}
+
+p {
+    margin-bottom: 0.5em;
+    font-size: 1.75em;
+    color: #ea8a1a;
+}
+
+    p:first-of-type {
+        margin-top: 0;
+        text-shadow: none;
+    }
+
+    p > a {
+        border-bottom: 1px dashed #837256;
+        font-style: italic;
+        text-decoration: none;
+        color: #837256;
+    }
+
+        p > a:hover {
+            text-shadow: 0 0 3px #8b4d1a;
+        }
+
+    p img {
+        vertical-align: bottom;
+    }
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        background-size: 300px 114px;
+        background-position: center top 22em;
+    }
+
+    .box {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        background-size: 320px 185px;
+    }
+
+    p:first-of-type {
+        margin-top: 0;
+    }
+}
+
+
+/* NotFound 404 Page
+-------------------------------------------------- */
+
+
+.main-NotFound {
+    height: 100vh;
+    width: 100vw;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.error-box {
+    margin: 0;
+    display: block;
+    text-align: center;
+    position: relative
+}
+
+#errorText {
+    font-size: 22px;
+    text-align: center;
+    position: relative
+}
+
+#errorLink {
+    font-size: 20px;
+    padding: 12px;
+    border: 1px solid;
+    color: #6fa8dc;
+    background-color: transparent;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+}
+
+    #errorLink:hover,
+    #errorLink:active {
+        color: #fff;
+        background: #388fdf;
+    }
+
+#g6219 {
+    transform-origin: 85px 4px;
+    animation: an1 12s 0.5s infinite ease-out;
+}
+
+@keyframes an1 {
+    0% {
+        transform: rotate(0);
+    }
+
+    5% {
+        transform: rotate(3deg);
+    }
+
+    15% {
+        transform: rotate(-2.5deg);
+    }
+
+    25% {
+        transform: rotate(2deg);
+    }
+
+    35% {
+        transform: rotate(-1.5deg);
+    }
+
+    45% {
+        transform: rotate(1deg);
+    }
+
+    55% {
+        transform: rotate(-1.5deg);
+    }
+
+    65% {
+        transform: rotate(2deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+
+    85% {
+        transform: rotate(2.5deg);
+    }
+
+    95% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+/* TEAM AND SPECIALTIES AND STORE HOURS
+-------------------------------------------------- */
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: transform 0.2s, box-shadow 0.2s; /* Adiciona uma transição suave de 0.2 segundos */
+}
+
+    .card:hover {
+        transform: scale(1.05); /* Aumenta ligeiramente o tamanho do card */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra para dar destaque */
+    }
+
+.card-body {
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s; /* Adiciona uma transição suave de 0.2 segundos */
+    overflow: hidden;
+}
+
+    .card-body:hover {
+        transform: scale(1.05); /* Aumenta ligeiramente o tamanho do card */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra para dar destaque */
+    }
+
+.text-center {
+    position: relative;
+}
+
+.moving-text-container {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.moving-text {
+    display: inline-block;
+    padding-left: 0; /* Removido o padding para evitar espaço extra no início */
+    opacity: 1; /* Definindo a opacidade para 1 por padrão */
+    animation: marquee 17s linear infinite, fade-in-out 2s ease-in-out infinite;
+}
+
+
+@keyframes marquee {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes fade-out {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    20%, 80% {
+        opacity: 0;
+    }
+}
+
+
+/* ICONS CONTACT / GIT / LINKEDIN
+-------------------------------------------------- */
+/* Estilo para todos os ícones dentro da classe .col.text-right */
+.col.text-right i {
+    color: #808080;
+    /* Estilo para o tooltip */
+    .tooltiptext
+
+{
+    visibility: hidden;
+    width: auto;
+    background-color: #333;
+    color: #808080;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* Exibe o tooltip quando o mouse está sobre o ícone */
+.col.text-right:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* CHAT 
+--------------------- */
+/*#chat-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+#user-input {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#send-button {
+    background-color: #1b6ec2;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #send-button:hover {
+        background-color: #1861ac;
+    }*/

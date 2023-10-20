@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Schedules</h3>
+
+<div id="calendar"></div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.css" />
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.0.1/fullcalendar.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var calendar = $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                defaultDate: '2023-09-07',
+                defaultView: 'agendaWeek', // Exibir a visualização da semana
+                slotDuration: '00:30:00', // Duração de cada slot (30 minutos)
+                minTime: '09:00:00', // Horário de início (9:00 AM)
+                maxTime: '18:00:00', // Horário de término (6:00 PM)
+                weekends: false, // Não exibir sábado e domingo
+
+                // Configuração para permitir agendar eventos
+                editable: true,
+                selectable: true,
+                selectHelper: true,
+                select: function (start, end) {
+                    // Verifique se a seleção cobre exatamente 30 minutos
+                    if (end.diff(start, 'minutes') === 30) {
+                        var title = prompt('Enter an event:');
+                        if (title) {
+                            var eventData = {
+                                title: title,
+                                start: start,
+                                end: end
+                            };
+                            calendar.fullCalendar('renderEvent', eventData, true);
+                            calendar.fullCalendar('unselect');
+                        }
+                    } else {
+                        alert('Please select a 30-minute slot.');
+                    }
+                },
+                events: []
+            });
+
+            // Função para recarregar os eventos
+            function refreshEvents() {
+                calendar.fullCalendar('refetchEvents');
+            }
+
+            // Chame a função de atualização a cada 30 segundos (ou conforme necessário)
+            setInterval(refreshEvents, 30000);
+        });
+    </script>
+}

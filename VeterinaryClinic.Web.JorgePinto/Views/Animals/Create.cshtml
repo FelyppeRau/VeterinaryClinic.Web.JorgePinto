@@ -1,0 +1,29 @@
+﻿@model VeterinaryClinic.Web.JorgePinto.Models.AnimalViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Create</h3>
+
+<h4>Animal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <partial name="_AnimalsCE" />
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Create</button>               
+                <a asp-action="Index" class="btn btn-outline-success"><i class="fa-solid fa-rotate-left"></i> Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

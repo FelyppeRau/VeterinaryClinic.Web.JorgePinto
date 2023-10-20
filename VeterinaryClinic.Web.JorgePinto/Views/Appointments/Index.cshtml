@@ -1,0 +1,188 @@
+﻿@model IEnumerable<VeterinaryClinic.Web.JorgePinto.Data.Entities.Appointment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Appointments</h3>
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <p>
+            <a asp-action="Create" class="btn btn-outline-primary"><i class="fa-regular fa-calendar-check"></i> New Appointment</a>
+        </p>
+    </div>
+    <div class="search-container" style="display: flex; align-items: center;">
+        <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearchInput()">
+        @* <button type="button" id="searchButton" class="btn btn-outline-primary" style="font-style: italic; margin-left: 10px;"> <i class="fa-solid fa-magnifying-glass"></i>  Search</button> *@
+    </div>
+</div>
+
+<table class="table">  @*AQUI SÃO AS LABEL's'*@
+    <thead>
+        <tr>
+            @*@if (this.User.IsInRole("Medic") || this.User.IsInRole("Owner"))  // A função IsInRole não funciona para verificar várias funções ao mesmo tempo. @if (this.User.IsInRole("Admin, Medic")
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.User.FullName)
+                </th>
+            }*@
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduleDate)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.ScheduleDate.Hour)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Owner.CellPhone)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Animal.FullAnimal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medic.FullName)
+            </td>
+            <td>                
+                @Html.DisplayFor(modelItem => item.ScheduleDate)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ScheduleDate.Hour)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.CellPhone)
+            </td>
+            
+            <td>
+                <!-- Checkbox for each row -->
+                <input type="checkbox" name="selectedAppointments" value="@item.Id">
+            </td>
+                     
+            <td>  
+                <button type="button" id="sendEmailButton" class="btn btn-outline-primary" style="font-style: italic; margin-left: 10px;" onclick="sendEmails()"> <i class="fa-regular fa-envelope"></i> Send Email</button>
+                @*<a asp-action="DeleteItemAppt" asp-route-id="@item.Id" class="btn btn-outline-danger" id="btnDeleteItemAppt"><i class="fa-regular fa-trash-can"></i> Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+@section Scripts {
+    <script>
+        function handleSearchInput() {
+            var searchTerm = $('#searchInput').val().toLowerCase();
+            $('.table tbody tr').each(function () {
+                var animalRow = $(this);
+                var textToSearch = animalRow.text().toLowerCase();
+                if (textToSearch.indexOf(searchTerm) === -1) {
+                    animalRow.hide();
+                } else {
+                    animalRow.show();
+                }
+            });
+
+            if (searchTerm === '') {
+                $('.table tbody tr').show();
+            }
+        }
+
+        function handleCheckboxChange() {
+            var selectedAppointments = [];
+            $('input[name="selectedAppointments"]:checked').each(function () {
+                selectedAppointments.push($(this).val());
+            });
+            localStorage.setItem('selectedAppointments', JSON.stringify(selectedAppointments));
+        }
+
+        $(document).ready(function () {
+            $('#searchButton').click(function () {
+                handleSearchInput();
+            });
+
+            $('#searchInput').on('input', function () {
+                handleSearchInput();
+            });
+
+            // Load previously selected appointments from Local Storage
+            var savedSelection = localStorage.getItem('selectedAppointments');
+            if (savedSelection) {
+                var selectedAppointments = JSON.parse(savedSelection);
+                selectedAppointments.forEach(function (appointmentId) {
+                    $('input[name="selectedAppointments"][value="' + appointmentId + '"]').prop('checked', true);
+                });
+            }
+
+            // Attach event handler for checkbox changes
+            $('input[name="selectedAppointments"]').on('change', function () {
+                handleCheckboxChange();
+            });
+        });
+
+        // *************** JS SEND EMAILS CONFIRMATION *********************
+
+        // function sendEmails() {
+        //     var selectedAppointments = [];
+        //     $('input[name="selectedAppointments"]:checked').each(function () {
+        //         selectedAppointments.push($(this).val());
+        //     });
+
+        //     // Verifica se pelo menos um agendamento foi selecionado
+        //     if (selectedAppointments.length === 0) {
+        //         alert('Please select at least one appointment to send emails.');
+        //         return;
+        //     }
+
+        //     // Envie os IDs dos agendamentos selecionados para o servidor
+        //     // Você precisará implementar o código do servidor para enviar os e-mails com base nos IDs selecionados.
+
+        //     // Exemplo de código para enviar os IDs para o servidor (requer jQuery):
+        //     $.ajax({
+        //         type: 'POST', // ou 'GET' dependendo da sua implementação no servidor
+        //         url: '/Appointments/SendEmails', // Substitua pelo URL correto do seu controlador
+        //         data: { appointmentIds: selectedAppointments }, // Envie os IDs selecionados para o servidor
+        //         success: function (data) {
+        //             // Lidar com a resposta do servidor, se necessário
+        //             alert('Emails sent successfully.'); // Exemplo de mensagem de sucesso
+        //         },
+        //         error: function (error) {
+        //             // Lidar com erros, se necessário
+        //             alert('An error occurred while sending emails.'); // Exemplo de mensagem de erro
+        //         }
+        //     });
+        // }
+
+
+    </script>
+       
+}
+
+        

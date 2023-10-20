@@ -1,0 +1,57 @@
+﻿@model VeterinaryClinic.Web.JorgePinto.Models.AddItemViewModel
+@{
+    ViewData["Title"] = "AddAppointment";
+}
+
+<h3>Add Appointment</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddAppointment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="OwnerId" class="control-label"></label>
+                <select asp-for="OwnerId" asp-items="Model.Owners" class="form-control"></select>
+                <span asp-validation-for="OwnerId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="AnimalId" class="control-label"></label>
+                <select asp-for="AnimalId" asp-items="Model.Animals" class="form-control"></select>
+                <span asp-validation-for="AnimalId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MedicId" class="control-label"></label>
+                <select asp-for="MedicId" asp-items="Model.Medics" class="form-control"></select>
+                <span asp-validation-for="MedicId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ScheduleDate" class="control-label">ScheduleDate - 9:00 to 17:30</label>
+                <input asp-for="ScheduleDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />   @*O calendário está disponível a partir de hoje!*@
+                <span asp-validation-for="ScheduleDate" class="text-danger"></span>
+            </div>
+            
+           
+            <div class="form-group">                
+                <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Create</button>
+                <a asp-action="Index" class="btn btn-outline-success"><i class="fa-solid fa-rotate-left"></i> Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text-warning small">
+    <p>
+        @ViewBag.ErrorMessage
+    </p>
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

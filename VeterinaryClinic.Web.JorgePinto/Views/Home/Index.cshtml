@@ -1,0 +1,408 @@
+﻿@{
+    ViewData["Title"] = "Veterinary Clinic";
+
+}
+
+
+
+<div class="text-center content-section mb-4">
+    <h1 class="display-4"></h1>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+    <img src="~/images/banner_vet_clinic.jpg" alt="Imagem" class="img-fluid" style="margin-top: 60px;">
+</div>
+
+@*<h3 class="moving-text" style="white-space: nowrap; color: #1b6ec2;">
+    <i class="fa-regular fa-clock"></i> Working Hours: Every day - from 12:00 AM to 12:00 AM - Including Sundays and Holidays.
+</h3>*@
+
+<div class="card-body text-center" style="height: 12px; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0px;">
+    <h3 class="moving-text" style="white-space: nowrap;">
+        <em style="color: #1b6ec2">
+            <i class="fa-regular fa-clock"></i> Working Hours: Every day - from 12:00 AM to 12:00 AM - Including Sundays and Holidays.
+        </em>
+    </h3>
+</div>
+
+<div style="margin-bottom: 40px;"></div>
+
+<!-- Header MEDICS -->
+<header class="bg-info text-center py-3 mb-4">
+    <div class="container">
+        <h3 class="fw-light text-white"><em>Medical Team</em></h3>
+
+    </div>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <!-- Team Member 1 -->
+        @*<div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_1.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Cecília Rau</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50">Neurologist</div>
+                </div>
+            </div>
+        </div>*@
+
+        <!-- Team Member 1 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_1.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Cecília Rau</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50 mb-3">Neurologist</div>
+
+                    <!-- Button to trigger the modal -->
+                    <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#additionalInfoModal1">
+                        Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="additionalInfoModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Dr. Cecília Rau - Neurologist</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Renowned veterinary neurologist,
+                            known for her passion for animals and expertise in neurological care.
+                            Her dedication transforms the lives of pets every day.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        @*<div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_2.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Cintia Rau</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50">Oncologist</div>
+                </div>
+            </div>
+        </div>*@
+
+        <!-- Team Member 2 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_2.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Cintia Rau</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50 mb-3">Neurologist</div>
+
+                    <!-- Button to trigger the modal -->
+                    <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#additionalInfoModal2">
+                        Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="additionalInfoModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Dr. Cintia Rau - Oncologist</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            A renowned veterinary oncologist, celebrated for her unwavering commitment
+                            to animals with cancer and her extensive expertise in veterinary oncology. 
+                            Her dedication brings hope and healing to furry patients and their families daily.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        @*<div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_4.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Stella Neves</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50">Dermatologist</div>
+                </div>
+            </div>
+        </div>*@
+
+        <!-- Team Member 3 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_4.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Stella Neves</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50 mb-3">Dermatologist</div>
+
+                    <!-- Button to trigger the modal -->
+                    <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#additionalInfoModal3">
+                        Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="additionalInfoModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Dr. Stella Neves - Dermatologist</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            A respected veterinary dermatologist, known for her unwavering dedication to addressing animal skin and coat issues. 
+                            Her expertise and compassion greatly enhance the well-being of her patients, improving their daily quality of life.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 4 -->
+        @*<div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_3.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Laura Rau</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50">Nephrologist</div>
+                </div>
+            </div>
+        </div>*@
+
+        <!-- Team Member 4 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <img src="~/images/vetM_3.jpg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><i class="fa-solid fa-staff-snake"></i>  Dr. Laura Rau</h5>
+                    <div class="card-text text-black-50">Medical Surgery</div>
+                    <div class="card-text text-black-50 mb-3">Nephrologist</div>
+
+                    <!-- Button to trigger the modal -->
+                    <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#additionalInfoModal4">
+                        Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="additionalInfoModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Dr. Laura Rau - Nephrologist</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            A celebrated veterinary nephrologist with deep commitment to animal renal health. 
+                            Her expertise and dedication improve kidney function and comfort for her patients daily.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+
+
+<!-- Header SPECIALTIES -->
+
+<header class="bg-info text-center py-3 mb-4">
+    <div class="container">
+        <h3 class="fw-light text-white"><em>Specialties</em></h3>
+    </div>
+</header>
+
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <!-- Specialtie 1 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-flask-vial fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Laboratory Tests</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 2 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-heart-pulse fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Cardiology</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 3 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-syringe fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Vaccines</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 4 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-crutch fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Orthopedics</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 5 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-lungs fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Pulmonologist</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 6 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-tooth fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Dental Medicine</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 7 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-bone fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Nutrition</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 8 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-music fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Music Therapy</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 9 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-eye fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Ophthalmology</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 10 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-radiation fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Radiology</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 11 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-bath fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Pet Grooming</em></h5>
+                </div>
+            </div>
+        </div>
+        <!-- Specialtie 12 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-0 shadow">
+                <i class="fa-solid fa-microscope fa-3x" style="color: #1b6ec2; margin-top: 15px;"></i>
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-0"><em>Diagnostic Medicine</em></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div style="margin-bottom: 40px;"></div>
+
+    
+    <!-- Header MAP -->
+
+    <header class="bg-info text-center py-3 mb-4">
+        <div class="container">
+            <h3 class="fw-light text-white"><i class="fa-solid fa-location-dot"></i><em>  Location</em></h3>
+        </div>
+    </header>
+    <div class="container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6227.364432236635!2d-9.19689023127419!3d38.7021433316666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1ecd1cdf51dba5%3A0xaaa77b600a1271fe!2sCentro%20de%20Forma%C3%A7%C3%A3o%20Profissional%20da%20Ind%C3%BAstria%20Electr%C3%B3nica%2C%20Energia%2C%20Telecomunica%C3%A7%C3%B5es%20e%20Tecnologias%20da%20Informa%C3%A7%C3%A3o%20(CINEL)!5e0!3m2!1spt-PT!2spt!4v1691703472855!5m2!1spt-PT!2spt"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    
+
+    <!-- CHAT -->
+
+    @*<div id="chat-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Digite sua mensagem..." />
+        <button id="send-button">Enviar</button>
+    </div>*@
+
+       
+</div>
+
+
+<!-- /.container -->
