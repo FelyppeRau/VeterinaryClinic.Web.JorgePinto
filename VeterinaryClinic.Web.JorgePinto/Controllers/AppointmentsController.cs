@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SendGrid;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using VeterinaryClinic.Web.JorgePinto.Data;
+using VeterinaryClinic.Web.JorgePinto.Data.Entities;
 using VeterinaryClinic.Web.JorgePinto.Helpers;
 using VeterinaryClinic.Web.JorgePinto.Models;
 
@@ -17,16 +19,16 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
         private readonly IOwnerRepository _ownerRepository;
         private readonly IAnimalRepository _animalRepository;
         private readonly IMedicRepository _medicRepository;
-
+        private readonly IMailHelper _mailHelper;
 
         public AppointmentsController(IAppointmentRepository appointmentRepository, IOwnerRepository ownerRepository,
-                                      IAnimalRepository animalRepository, IMedicRepository medicRepository)
+                                      IAnimalRepository animalRepository, IMedicRepository medicRepository, IMailHelper mailHelper)
         {
             _appointmentRepository = appointmentRepository;
             _ownerRepository = ownerRepository;
             _animalRepository = animalRepository;
             _medicRepository = medicRepository;
-
+            _mailHelper = mailHelper;
         }
 
         public async Task<IActionResult> Index()
@@ -52,6 +54,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
                 Animals = _animalRepository.GetComboAnimals(),
                 Medics = _medicRepository.GetComboMedics(),
                 ScheduleDate = DateTime.Today,  // como apresenta o calendário
+                Time = DateTime.Today,
             };
 
             //if (!User.IsInRole("Medic"))
@@ -136,6 +139,5 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
             return RedirectToAction("Create");
         }
 
-        
     }
 }

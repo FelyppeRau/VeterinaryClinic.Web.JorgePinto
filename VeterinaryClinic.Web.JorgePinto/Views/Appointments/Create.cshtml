@@ -42,9 +42,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ScheduleDate)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.ScheduleDate)
-            </th>*@
+             <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th> 
             <th>
                 @Html.DisplayNameFor(model => model.Owner.CellPhone)
             </th>
@@ -72,9 +72,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ScheduleDate)
                 </td>
-               @* <td>
-                    @Html.DisplayFor(modelItem => item.ScheduleDate)
-                </td>*@
+                 <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td> 
                 <td>
                     @Html.DisplayFor(modelItem => item.Owner.CellPhone)
                 </td>                
@@ -96,6 +96,7 @@
         @ViewBag.ErrorMessage
     </p>
 </div>
+
 
 @******************************** POUP-UP CONFIRMAÇÃO CONFIRM ***********************************@
 
@@ -213,5 +214,15 @@
             });
         });
 
+        
+    </script>    
+    
+    <script>
+
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
     </script>
+
+
 }

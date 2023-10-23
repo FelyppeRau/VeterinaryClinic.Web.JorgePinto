@@ -26,10 +26,15 @@ namespace VeterinaryClinic.Web.JorgePinto.Data.Entities
         [Required]
         //[DataType(DataType.Date)]
         [Display(Name = "Date")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime ScheduleDate { get; set; }
 
-       
+        [Required]
+		[DataType(DataType.Time)]
+		//[Display(Name = "Time")]
+		//[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = false)]
+		public DateTime Time { get; set; }
+
         [Required]
         public User User { get; set; }
 

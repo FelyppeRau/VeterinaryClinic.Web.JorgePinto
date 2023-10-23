@@ -24,9 +24,9 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
 
         Task<Appointment> GetAppointmentAsync(int id);
 
-        Task<bool> IsDuplicateAppointmentAsync(int medicid, DateTime scheduleDate); // DUPLICIDADE ANTES DE CONFIRMAR
+        Task<bool> IsDuplicateAppointmentAsync(int medicid, DateTime scheduleDate, DateTime time); // DUPLICIDADE ANTES DE CONFIRMAR
 
-        Task<bool> ConfirmDuplicateAppointmentAsync(int medicid, DateTime scheduleDate);  // DUPLICIDADE AO CONFIRMAR
+        Task<bool> ConfirmDuplicateAppointmentAsync(int medicid, DateTime scheduleDate, DateTime time);  // DUPLICIDADE AO CONFIRMAR
 
 
     }

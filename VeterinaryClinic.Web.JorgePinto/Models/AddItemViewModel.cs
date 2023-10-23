@@ -33,8 +33,13 @@ namespace VeterinaryClinic.Web.JorgePinto.Models
 
         [Required]
         [Display(Name = "Schedule Date")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = false)]        
         public DateTime ScheduleDate { get; set; }
-       
+
+        [Required]
+		[DataType(DataType.Time)]
+		//[Display(Name = "Time")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = false)]
+		public DateTime Time { get; set; }
     }
 }

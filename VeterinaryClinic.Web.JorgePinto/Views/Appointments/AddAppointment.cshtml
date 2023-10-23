@@ -29,10 +29,33 @@
                 <span asp-validation-for="MedicId" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="ScheduleDate" class="control-label">ScheduleDate - 9:00 to 17:30</label>
-                <input asp-for="ScheduleDate" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />   @*O calendário está disponível a partir de hoje!*@
+             <div class="form-group">
+                <label asp-for="ScheduleDate" class="control-label">ScheduleDate</label>
+                <input asp-for="ScheduleDate" class="form-control" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />   @*O calendário está disponível a partir de hoje!*@
                 <span asp-validation-for="ScheduleDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time" class="control-label">Time</label>
+                
+                <select asp-for="Time" class="form-control">
+                    <option value="09:00">09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                </select>
+                <span asp-validation-for="Time" class="text-danger"></span>
             </div>
             
            

@@ -15,25 +15,27 @@
 
     <script>
         $(document).ready(function () {
+            var currentDate = new Date(); // Obtém a data atual
+
+            // Formata a data atual no formato "YYYY-MM-DD"
+            var defaultDate = currentDate.toISOString().slice(0, 10);
+
             var calendar = $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                defaultDate: '2023-09-07',
-                defaultView: 'agendaWeek', // Exibir a visualização da semana
-                slotDuration: '00:30:00', // Duração de cada slot (30 minutos)
-                minTime: '09:00:00', // Horário de início (9:00 AM)
-                maxTime: '18:00:00', // Horário de término (6:00 PM)
-                weekends: false, // Não exibir sábado e domingo
-
-                // Configuração para permitir agendar eventos
+                defaultDate: defaultDate, // Define a data atual como a data padrão
+                defaultView: 'agendamonth',
+                slotDuration: '00:30:00',
+                minTime: '09:00:00',
+                maxTime: '17:30:00',
+                weekends: false,
                 editable: true,
                 selectable: true,
                 selectHelper: true,
                 select: function (start, end) {
-                    // Verifique se a seleção cobre exatamente 30 minutos
                     if (end.diff(start, 'minutes') === 30) {
                         var title = prompt('Enter an event:');
                         if (title) {
@@ -52,13 +54,12 @@
                 events: []
             });
 
-            // Função para recarregar os eventos
             function refreshEvents() {
                 calendar.fullCalendar('refetchEvents');
             }
 
-            // Chame a função de atualização a cada 30 segundos (ou conforme necessário)
             setInterval(refreshEvents, 30000);
         });
+
     </script>
 }

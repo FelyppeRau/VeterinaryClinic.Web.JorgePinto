@@ -1,0 +1,47 @@
+﻿@model VeterinaryClinic.Web.JorgePinto.Models.ContactViewModel
+
+
+@{
+    ViewData["Title"] = "Contact";
+
+}
+
+<h3>Contact</h3>
+
+@if(ViewData["Message"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+    
+        @ViewData["Message"]
+
+    </div>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="SendContact">
+            <div class="form-group mb-2">
+                <label asp-for="Email"></label>
+                <input class="form-control" asp-for="Email" typr="email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Message"></label>
+                <textarea class="form-control" asp-for="Message"></textarea>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <input type="submit" class="btn btn-outline-primary" value="Send Email" />
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

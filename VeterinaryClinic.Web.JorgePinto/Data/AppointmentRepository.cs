@@ -58,7 +58,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
             }
 
             // TRAVA SE HOUVER UM AGENDAMENTO PARA O MESMO MÉDICO NO MESMO DIA E HORÁRIO (*** NA AppointmentDetailsTemp ANTES DE CONFIRMAR ***)
-            var isDuplicateAppointment = await IsDuplicateAppointmentAsync(medic.Id, model.ScheduleDate);
+            var isDuplicateAppointment = await IsDuplicateAppointmentAsync(medic.Id, model.ScheduleDate, model.Time);
             if (isDuplicateAppointment)
             {    
               return false;                
@@ -78,6 +78,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
                     Animal = animal,
                     Medic = medic,
                     ScheduleDate = model.ScheduleDate,
+                    Time = model.Time,
                     User = user,
                 };
 
@@ -120,9 +121,9 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
             }
 
             // TRAVA SE HOUVER UM AGENDAMENTO PARA O MESMO MÉDICO NO MESMO DIA E HORÁRIO (*** NA Appointment AO CONFIRMAR ***)
-            var confirmedAppointment = await ConfirmDuplicateAppointmentAsync(appointmentTmp.Medic.Id, appointmentTmp.ScheduleDate);
+            var confirmedAppointment = await ConfirmDuplicateAppointmentAsync(appointmentTmp.Medic.Id, appointmentTmp.ScheduleDate, appointmentTmp.Time);
             if (confirmedAppointment)
-            {                
+            {
                 return false;
             }
 
@@ -131,7 +132,8 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
                 Owner = appointmentTmp.Owner,
                 Animal = appointmentTmp.Animal,
                 Medic = appointmentTmp.Medic,
-                ScheduleDate = appointmentTmp.ScheduleDate
+                ScheduleDate = appointmentTmp.ScheduleDate,
+                Time = appointmentTmp.Time
             };
 
             var appointment = new Appointment
@@ -140,6 +142,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
                 Animal = appointmentTmp.Animal,
                 Medic = appointmentTmp.Medic,
                 ScheduleDate = appointmentTmp.ScheduleDate,
+                Time = appointmentTmp.Time,
                 User = user,
                 Items = new List<AppointmentDetail> { detail }
             };
@@ -153,16 +156,16 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
             return true;
         }
 
-        public async Task<bool> ConfirmDuplicateAppointmentAsync(int medicid, DateTime scheduleDate)
+        public async Task<bool> ConfirmDuplicateAppointmentAsync(int medicid, DateTime scheduleDate, DateTime time)
         {
             return await _context.AppointmentDetails
-               .AnyAsync(a => a.Medic.Id == medicid && a.ScheduleDate == scheduleDate);
+               .AnyAsync(a => a.Medic.Id == medicid && a.ScheduleDate == scheduleDate && a.Time == time);
         }
 
         public async Task DeleteDetailTempAsync(int id)
         {
-           var appointmentDetailTemp = await _context.AppointmentDetailsTemps.FindAsync(id);
-            if(appointmentDetailTemp == null)
+            var appointmentDetailTemp = await _context.AppointmentDetailsTemps.FindAsync(id);
+            if (appointmentDetailTemp == null)
             {
                 return;
             }
@@ -171,17 +174,17 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
             await _context.SaveChangesAsync();
         }
 
-        
+
 
         public async Task<IQueryable<Appointment>> GetAppointmentAsync(string userName)
         {
             var user = await _userHelper.GetUserByEmailAsync(userName);
-            if(user == null)
+            if (user == null)
             {
                 return null;
             }
 
-            if(await _userHelper.IsUserInRoleAsync(user, "Medic")) // SE FOR O MÉDICO LOGADO DÁ-ME TODAS AS CONSULTAS                                                                   
+            if (await _userHelper.IsUserInRoleAsync(user, "Medic")) // SE FOR O MÉDICO LOGADO DÁ-ME TODAS AS CONSULTAS                                                                   
             {
                 return _context.Appointments
                     .Include(i => i.User)  // Mostra o User que marcou a consulta
@@ -201,7 +204,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
                 .ThenInclude(i => i.Animal)  // Mostrar
                 .Include(o => o.Items)  // Buscar
                 .ThenInclude(i => i.Medic)  // Mostrar
-                .Where(o => o.User == user)  
+                .Where(o => o.User == user)
                 .OrderBy(o => o.ScheduleDate);
         }
 
@@ -213,25 +216,25 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
         public async Task<IQueryable<AppointmentDetailTemp>> GetDetailTempsAsync(string userName)
         {
             var user = await _userHelper.GetUserByEmailAsync(userName);
-            if(user == null)
+            if (user == null)
             {
                 return null;
             }
 
             return _context.AppointmentDetailsTemps
-                .Include(o => o.Owner)  
+                .Include(o => o.Owner)
                 .Include(o => o.Animal)
                 .Include(o => o.Medic)
                 .Where(o => o.User == user)
                 .OrderBy(o => o.ScheduleDate);
 
-           
+
         }
 
-        public async Task<bool> IsDuplicateAppointmentAsync(int medicid, DateTime scheduleDate)
+        public async Task<bool> IsDuplicateAppointmentAsync(int medicid, DateTime scheduleDate, DateTime time)
         {
             return await _context.AppointmentDetailsTemps
-                .AnyAsync(a => a.Medic.Id == medicid && a.ScheduleDate == scheduleDate);
+                .AnyAsync(a => a.Medic.Id == medicid && a.ScheduleDate == scheduleDate && a.Time == time);
         }
     }
 }
