@@ -11,5 +11,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Models
         [Required]
         public string Message { get; set; }
 
+       
+
     }
 }

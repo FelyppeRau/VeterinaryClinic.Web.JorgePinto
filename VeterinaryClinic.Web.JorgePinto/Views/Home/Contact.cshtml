@@ -21,16 +21,20 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post" asp-action="SendContact">
+                        
+            
             <div class="form-group mb-2">
-                <label asp-for="Email"></label>
+                <label asp-for="Email"> Email</label>
                 <input class="form-control" asp-for="Email" typr="email"/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+            <div>
 
+            </div>
             <div class="form-group mb-2">
                 <label asp-for="Message"></label>
-                <textarea class="form-control" asp-for="Message"></textarea>
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <textarea class="form-control" asp-for="Message"  rows="5"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
             </div>
 
             <input type="submit" class="btn btn-outline-primary" value="Send Email" />

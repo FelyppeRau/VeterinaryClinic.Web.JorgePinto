@@ -22,12 +22,12 @@
 <table class="table">  @*AQUI SÃO AS LABEL's'*@
     <thead>
         <tr>
-            @*@if (this.User.IsInRole("Medic") || this.User.IsInRole("Owner"))  // A função IsInRole não funciona para verificar várias funções ao mesmo tempo. @if (this.User.IsInRole("Admin, Medic")
-            {
+           @*  @if (this.User.IsInRole("Medic") || this.User.IsInRole("Owner"))  // A função IsInRole não funciona para verificar várias funções ao mesmo tempo. @if (this.User.IsInRole("Admin, Medic")
+            { *@
                 <th>
                     @Html.DisplayNameFor(model => model.User.FullName)
                 </th>
-            }*@
+            @* } *@
             <th>
                 @Html.DisplayNameFor(model => model.Owner)
             </th>
@@ -56,9 +56,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            @*<td>
+            <td>
                 @Html.DisplayFor(modelItem => item.User.FullName)
-            </td>*@
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Owner.FullName)
             </td>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using VeterinaryClinic.Web.JorgePinto.Data.Entities;
 
 namespace VeterinaryClinic.Web.JorgePinto.Models
 {
@@ -20,7 +20,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Models
         
         [Display(Name = "Owner")]
         [Range(1, int.MaxValue, ErrorMessage = "You must select a Owner.")]
-        public int OwnerId { get; set; }
+        public int? OwnerId { get; set; }
 
         public IEnumerable<SelectListItem> Owners { get; set; }  // VERIFICAR COMO SOMENTE APARECER NA COMBOX O OWNER
 
@@ -41,5 +41,9 @@ namespace VeterinaryClinic.Web.JorgePinto.Models
 		//[Display(Name = "Time")]
 		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy }", ApplyFormatInEditMode = false)]
 		public DateTime Time { get; set; }
+
+        public int UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

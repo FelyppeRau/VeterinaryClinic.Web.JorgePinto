@@ -1,7 +1,11 @@
 ﻿@model VeterinaryClinic.Web.JorgePinto.Models.AnimalViewModel
 
 
-
+@* <div class="form-group">
+    <label asp-for="Owner.User" class="control-label"></label>
+    <select asp-for="Owner.User" asp-items="Model.Owner" class="form-control"></select>
+    <span asp-validation-for="Owner.User" class="text-danger"></span>
+</div> *@
 <div class="form-group">
     <label asp-for="Name" class="control-label"></label>
     <input asp-for="Name" class="form-control" />
@@ -9,13 +13,16 @@
 </div>
 <div class="form-group">
     <label asp-for="Sex" class="control-label"></label>
-    <input asp-for="Sex" class="form-control" />
-    <span asp-validation-for="Sex" class="text-danger"></span>
+    <br />
+    <input type="radio" asp-for="Sex" value="M" /> Male
+    <input type="radio" asp-for="Sex" value="F" /> Female
+    @* <input asp-for="Sex" class="form-control" />
+    <span asp-validation-for="Sex" class="text-danger"></span> *@
 </div>
 <div class="form-group">
     <label asp-for="Breed" class="control-label"></label>
     <input asp-for="Breed" class="form-control" />
-    <span asp-validation-for="Breed" class="text-danger"></span>
+    <span asp-validation-for="Breed" class="text-danger"></span> 
 </div>
 <div class="form-group">
     <label asp-for="Species" class="control-label"></label>
@@ -37,3 +44,9 @@
     <input asp-for="ImageFile" class="form-control" type="file" /> @*CONTROLE SYNCFUSION*@
     <span asp-validation-for="ImageFile" class="text-danger"></span>
 </div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

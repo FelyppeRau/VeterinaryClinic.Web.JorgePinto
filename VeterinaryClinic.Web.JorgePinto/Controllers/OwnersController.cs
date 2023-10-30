@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VeterinaryClinic.Web.JorgePinto.Data;
+using VeterinaryClinic.Web.JorgePinto.Data.Entities;
 using VeterinaryClinic.Web.JorgePinto.Helpers;
 using VeterinaryClinic.Web.JorgePinto.Models;
 
@@ -83,7 +84,8 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
 
                 await _ownerRepository.CreateAsync(owner);
 
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Animals");
             }
             return View(model);
         }

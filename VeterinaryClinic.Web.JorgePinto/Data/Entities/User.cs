@@ -6,6 +6,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data.Entities
 {
     public class User : IdentityUser
     {
+        internal static readonly object Identity;
 
         public string FirstName { get; set; }  
 

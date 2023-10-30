@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - All Pets Welcome</title>
     <link rel="icon" type="image/png" href="~/images/icon_vet_clinic.jpg" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Ql/8d5xOq4zBX1soJp+EM7CBp5HglGf3Srybl2CkBYA5r" crossorigin="anonymous">
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -51,11 +52,11 @@
                                 Schedules    
                                 </a>
                             </li>
-                            <li class="nav-item">
+                           @*  <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Rooms" asp-action="Index"><i class="fa-regular fa-hospital fa-sm" style="color: #263c54;"></i>
                                 Rooms    
                                 </a>
-                            </li>
+                            </li> *@
                         }
                         @if (this.User.Identity.IsAuthenticated && this.User.IsInRole("Medic") || this.User.IsInRole("Owner"))
                         {
@@ -73,7 +74,8 @@
                                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @* <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Users</a></li> *@ @*************ASP-CONTROLLER***********************@
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Medics" asp-action="Index"><i class="fa-solid fa-stethoscope"></i>  Medics</a></li> @*************ASP-CONTROLLER***********************@
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Owners" asp-action="Index"><i class="fa-solid fa-user"></i>  Owners</a></li> @*************ASP-CONTROLLER***********************@
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Owners" asp-action="Index"><i class="fa-solid fa-users"></i>  Owners</a></li> @*************ASP-CONTROLLER***********************@
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-regular fa-user"></i>  Anonymous</a></li> @*************ASP-CONTROLLER***********************@
                                     <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa-regular fa-envelope"></i>  Contact</a></li>
                                     @* <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Anonymous</a></li> *@ @*************ASP-CONTROLLER***********************  *@
                                  </ul> 

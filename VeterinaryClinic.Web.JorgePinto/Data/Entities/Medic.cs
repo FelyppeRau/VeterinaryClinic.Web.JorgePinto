@@ -34,6 +34,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data.Entities
 
         [Required]
         [Display(Name = "Cell Phone")]
+        [RegularExpression(@"^\d{9}$", ErrorMessage = "The phone number must be exactly 9 digits.")]
         public string CellPhone { get; set; }
 
 

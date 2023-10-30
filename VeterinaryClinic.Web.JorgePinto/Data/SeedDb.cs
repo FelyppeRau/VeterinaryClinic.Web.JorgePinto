@@ -116,7 +116,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
                 AddAnimal("Laila", "F", "Border Collie", "Canine", user);
                 AddAnimal("Luluca", "F", "Pug", "Canine", user);
                 AddAnimal("Toy", "M", "Schnauzer", "Canine", user);
-                AddAnimal("Kitana", "F", "Husky Siberiano", "Canine", user);
+                AddAnimal("Kitana", "F", "Siberian Husky", "Canine", user);
                 AddAnimal("Zac", "M", "Chow Chow", "Canine", user);
                 AddAnimal("Stallone", "M", "Lizard", "Reptile", user);
                 AddAnimal("Tigger", "M", "German Shepherd", "Canine", user);

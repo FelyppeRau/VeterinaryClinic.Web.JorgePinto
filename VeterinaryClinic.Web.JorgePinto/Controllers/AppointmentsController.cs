@@ -90,6 +90,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
                     if (!response)
                     {
                         ViewBag.ErrorMessage = "Unavailable Schedules!";
+                                                
 
                         return View(model);
                     }
@@ -129,6 +130,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
         public async Task<IActionResult> ConfirmAppointment(int id)
         {
             var response = await _appointmentRepository.ConfirmAppointmentAsync(this.User.Identity.Name, id);
+                       
             if (response)
             {
                 return RedirectToAction("Create");
@@ -137,6 +139,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
             ViewBag.ErrorMessage = "Unavailable Schedules!";
 
             return RedirectToAction("Create");
+            
         }
 
     }

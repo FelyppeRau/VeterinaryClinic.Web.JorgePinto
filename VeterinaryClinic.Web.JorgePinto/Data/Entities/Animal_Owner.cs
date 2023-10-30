@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using System.ComponentModel.DataAnnotations;
+using System;
+using System.Reflection.Emit;
 
 namespace VeterinaryClinic.Web.JorgePinto.Data.Entities
 {
-    public class Animal : IEntity
+    public class Animal_Owner : IEntity
     {
-
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Animal")]
         [MaxLength(20, ErrorMessage = "The field {0} only can contain {1} characters lenght.")]
         public string Name { get; set; }
 
@@ -31,17 +30,6 @@ namespace VeterinaryClinic.Web.JorgePinto.Data.Entities
         [DataType(DataType.Date)]
         public DateTime? Birthday { get; set; }
 
-
-        public User User { get; set; }
-
-        public Owner Owner { get; set; }
-
-        //[Display(Name = "Owner")]
-        //[Range(1, int.MaxValue, ErrorMessage = "You must select a Owner.")]
-        //public int OwnerId { get; set; }
-
-        //public IEnumerable<SelectListItem> Owners { get; set; }  // VERIFICAR COMO SOMENTE APARECER NA COMBOX O OWNER
-
         [Required]
         [Display(Name = "Photo")]
         public Guid ImageId { get; set; }
@@ -54,19 +42,5 @@ namespace VeterinaryClinic.Web.JorgePinto.Data.Entities
 
         [Display(Name = "Animal")]
         public string FullAnimal => $"{Name} - {Breed}";
-
-
-       
-
-
-
-        //public decimal? Weight { get; set; }
-
-
-        //[Required]
-        //[RegularExpression(".+\\@.+\\..+", ErrorMessage = "Invalid Email")]
-        //[Display(Name = "Owner Email")]
-        //public string Email { get; set; }
-
     }
 }

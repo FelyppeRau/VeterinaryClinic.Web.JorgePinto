@@ -27,7 +27,7 @@
                     right: 'month,agendaWeek,agendaDay'
                 },
                 defaultDate: defaultDate, // Define a data atual como a data padrão
-                defaultView: 'agendamonth',
+                defaultView: 'month',
                 slotDuration: '00:30:00',
                 minTime: '09:00:00',
                 maxTime: '17:30:00',
@@ -51,7 +51,68 @@
                         alert('Please select a 30-minute slot.');
                     }
                 },
-                events: []
+                events: [
+                    {
+                        title: 'JUCA - Border Collie / Pet Grooming',
+                        start: '2023-11-14T16:00:00',
+                        end: '2023-11-14T16:30:00',
+                        color: '#f08080'
+                    },
+                    {
+                        title: 'SEMINAR',
+                        start: '2023-11-15',
+                        end: '2023-11-16',
+                        color: '#ffa500'
+                    },
+                    {
+                        title: 'ANITTA - British Shorthais - Ophthalmology',
+                        start: '2023-11-16T14:30:00',
+                        end: '2023-11-16T15:00:00',
+                        color: '#5f9ea0'
+                    },
+                    {
+                        title: 'KITANA - Siberian Husky / Ultrasonography',
+                        start: '2023-11-17T10:30:00',
+                        end: '2023-11-17T11:00:00',
+                        color: '#9932cc'
+                    },
+                    {
+                        title: 'MIKE - Beagle / Sterilization',
+                        start: '2023-11-20T16:00:00',
+                        end: '2023-11-20T16:30:00',
+                        color: '#f08080'
+                    },
+                    {
+                        title: 'KITANA - Siberian Husky / Ultrasonography',
+                        start: '2023-11-21T10:30:00',
+                        end: '2023-11-21T11:00:00',
+                        color: '#9932cc'
+                    },
+                    {
+                        title: 'TIGGER - German Shepherd / Laboratory Tests',
+                        start: '2023-11-23T14:30:00',
+                        end: '2023-11-23T15:00:00',
+                        color: '#5f9ea0'
+                    },
+                    {
+                        title: 'MAX - Bernese Mountain / Dental Medicine',
+                        start: '2023-11-27T10:00:00',
+                        end: '2023-11-27T10:30:00',
+                        color: '#9932cc'
+                    },   
+                    {
+                        title: 'Luluca - Border Collie / Pulmonologist',
+                        start: '2023-12-05T11:30:00',
+                        end: '2023-12-05T12:00:00',
+                        color: '#7ba05b'
+                    },
+                    {
+                        title: 'STALLONE - Lizard / Nutrition',
+                        start: '2023-12-10T09:30:00',
+                        end: '2023-12-10T10:00:00',
+                        color: '#7ba05b'
+                    }
+                ]
             });
 
             function refreshEvents() {
@@ -62,4 +123,5 @@
         });
 
     </script>
-}
+    }
+
