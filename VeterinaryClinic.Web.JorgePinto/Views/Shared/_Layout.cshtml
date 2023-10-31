@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="~/images/icon_vet_clinic.jpg" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Ql/8d5xOq4zBX1soJp+EM7CBp5HglGf3Srybl2CkBYA5r" crossorigin="anonymous">
+    @* <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -169,6 +171,11 @@
             phoneIcon.removeChild(tooltip);
         });
 
+        //CAROUSEL
+        $(document).ready(function () {
+            $("#meuCarousel").carousel();
+        });
+
 
         // Função para adicionar uma mensagem à janela de chat
         function addMessage(message, isUser) {
@@ -242,5 +249,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @*CAROUSEL*@
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -9,6 +9,14 @@
     {
       "library": "fullcalendar@6.1.9",
       "destination": "wwwroot/lib/fullcalendar/"
+    },
+    {
+      "library": "responsiveCarousel@1.2.2",
+      "destination": "wwwroot/lib/responsiveCarousel/"
+    },
+    {
+      "library": "bootstrap-video-carousel@1.0.0",
+      "destination": "wwwroot/css/bootstrap-video-carousel/"
     }
   ]
 }
