@@ -8,6 +8,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
 {
     public interface IAppointmentRepository : IGenericRepository<Appointment>
     {
+        public IQueryable GetAllWithUsers();
 
         Task<IQueryable<Appointment>> GetAppointmentAsync(string userName); // Dá-me todas as consultas de um determinado user
 

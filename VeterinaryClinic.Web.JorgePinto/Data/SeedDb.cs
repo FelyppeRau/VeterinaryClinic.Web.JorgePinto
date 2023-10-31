@@ -181,14 +181,25 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
         }
 
         private void AddAnimal(string name, string sex, string breed, string species, User user)
-        {            
+        {
+            Random random = new Random();
+
+            // Defina as datas de início e fim do intervalo desejado
+            DateTime startDate = new DateTime(2015, 1, 1);
+            DateTime endDate = new DateTime(2023, 10, 20);
+
+            // Gere uma data aleatória entre as datas de início e fim
+            TimeSpan range = endDate - startDate;
+            int rangeDays = random.Next((int)range.TotalDays);
+            DateTime birthday = startDate.AddDays(rangeDays);
 
             _context.Animals.Add(new Animal
             {
                 Name = name,
                 Sex = sex,
                 Breed = breed,
-                Species = species,               
+                Species = species,  
+                Birthday = birthday,
                 //ImageUrl
                 User = user,
             });

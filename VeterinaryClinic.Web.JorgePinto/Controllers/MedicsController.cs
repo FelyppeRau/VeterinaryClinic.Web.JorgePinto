@@ -12,7 +12,7 @@ using VeterinaryClinic.Web.JorgePinto.Models;
 namespace VeterinaryClinic.Web.JorgePinto.Controllers
 {
     
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class MedicsController : Controller
     {
         private readonly IMedicRepository _medicRepository;

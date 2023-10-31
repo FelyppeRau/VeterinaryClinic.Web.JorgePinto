@@ -16,7 +16,6 @@ using VeterinaryClinic.Web.JorgePinto.Models;
 namespace VeterinaryClinic.Web.JorgePinto.Controllers
 {
 
-
     public class AccountController : Controller
     {
         private readonly IUserHelper _userHelper;
@@ -74,7 +73,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
             return View();
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]  // Aqui é que de fato valida as informações
 
         public async Task<IActionResult> Register(RegisterNewUserViewModel model)
@@ -127,8 +126,9 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
                     }, protocol: HttpContext.Request.Scheme);
 
                     Response response = _mailHelper.SendEmail(model.UserName, "Email confirmation", $"<h2>Email Confirmation<h2>" +
-                        $"To allow the user, " +
-                        $"please click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+                        $"Welcome to VetClinic.</br></br>" +
+                        $"Please confirm your email using the link below to access our website:</br></br>" +
+                        $"<a href = \"{tokenLink}\">Confirm Email</a>");
 
 
                     if (response.IsSuccess)

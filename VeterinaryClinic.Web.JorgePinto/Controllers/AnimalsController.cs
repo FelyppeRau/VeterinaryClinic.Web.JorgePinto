@@ -10,8 +10,7 @@ using VeterinaryClinic.Web.JorgePinto.Models;
 
 namespace VeterinaryClinic.Web.JorgePinto.Controllers
 {
-
-   
+    [Authorize(Roles = "Medic")]
     public class AnimalsController : Controller
     {
         private readonly IAnimalRepository _animalRepository;
@@ -31,7 +30,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
         }
 
         // GET: Animals
-        //[Authorize(Roles = "Medic, Customer, Admin")] //**************RETIRAR O ADMIN********************
+        //[Authorize(Roles = "Medic")] 
         public IActionResult Index()
         {
             return View(_animalRepository.GetAll().OrderBy(p => p.Name));
@@ -57,7 +56,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
         }
 
         // GET: Animals/Create
-        //[Authorize(Roles = "Medic")] //**************RETIRAR O ADMIN********************
+        //[Authorize(Roles = "Medic")] 
         public IActionResult Create()
         {
             return View();

@@ -11,7 +11,7 @@ using VeterinaryClinic.Web.JorgePinto.Helpers;
 
 namespace VeterinaryClinic.Web.JorgePinto.Controllers
 {
-    
+    //[Authorize(Roles = "Admin")]
     public class SchedulesController : Controller
     {
 

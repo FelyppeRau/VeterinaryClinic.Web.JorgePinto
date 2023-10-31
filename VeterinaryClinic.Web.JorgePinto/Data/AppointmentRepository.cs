@@ -28,7 +28,16 @@ namespace VeterinaryClinic.Web.JorgePinto.Data
             _userHelper = userHelper;
         }
 
-       
+       public IQueryable GetAllWithUsers()
+        {
+            return _context.Appointments
+                .Include(a => a.User)
+                .Include(a => a.Animal)
+                .Include(a => a.Medic);
+                
+
+
+        }
 
         public async Task<bool> AddItemToAppointmentAsync(AddItemViewModel model, string userName)
         {

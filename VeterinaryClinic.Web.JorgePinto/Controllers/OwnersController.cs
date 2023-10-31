@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VeterinaryClinic.Web.JorgePinto.Data;
@@ -11,7 +12,7 @@ using VeterinaryClinic.Web.JorgePinto.Models;
 namespace VeterinaryClinic.Web.JorgePinto.Controllers
 {
 
-    //[Authorize(Roles = "Medic")]
+    [Authorize(Roles = "Medic")]
     public class OwnersController : Controller
     {
         private readonly IOwnerRepository _ownerRepository;

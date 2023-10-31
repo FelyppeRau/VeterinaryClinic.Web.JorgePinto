@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SendGrid;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ using VeterinaryClinic.Web.JorgePinto.Models;
 
 namespace VeterinaryClinic.Web.JorgePinto.Controllers
 {
-    //[Authorize(Roles = "Medic, Owner")]
+    [Authorize(Roles = "Medic, Owner")]
     public class AppointmentsController : Controller
     {
         private readonly IAppointmentRepository _appointmentRepository;
@@ -142,5 +144,47 @@ namespace VeterinaryClinic.Web.JorgePinto.Controllers
             
         }
 
+        // GET: Medics/Delete/5       
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new NotFoundViewResult("AppointmentNotFound");
+            }
+
+            var appointment = await _appointmentRepository.GetByIdAsync(id.Value);
+
+            if (appointment == null)
+            {
+                return new NotFoundViewResult("AppointmentNotFound");
+            }
+
+            return View(appointment);
+        }
+
+        // POST: Appointments/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var appointment = await _appointmentRepository.GetByIdAsync(id);
+
+            try
+            {
+                await _appointmentRepository.DeleteAsync(appointment);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException != null && ex.InnerException.Message.Contains("DELETE"))
+                {
+                    ViewBag.ErrorTitle = $"The {appointment.Animal} is probably linked to some schedule!";
+                    ViewBag.ErrorMessage = $"The {appointment.Animal} cannot be deleted, as there are appointments linked.</br></br>" +
+                         $"First, try deleting all linked appointments and after deleting the Medic again.";
+                }
+            }
+
+            return View("Error");
+        }
     }
 }

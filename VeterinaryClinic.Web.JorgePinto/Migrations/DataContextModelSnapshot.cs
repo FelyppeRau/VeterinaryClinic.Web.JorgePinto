@@ -197,48 +197,6 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.Animal_Owner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Breed")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<Guid>("ImageId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int?>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Sex")
-                        .IsRequired()
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
-
-                    b.Property<string>("Species")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Animals_Owner");
-                });
-
             modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.Appointment", b =>
                 {
                     b.Property<int>("Id")
@@ -488,9 +446,6 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("Animal_OwnerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -503,12 +458,10 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -544,8 +497,6 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Animal_OwnerId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -612,7 +563,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
             modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.Animal", b =>
                 {
                     b.HasOne("VeterinaryClinic.Web.JorgePinto.Data.Entities.Owner", "Owner")
-                        .WithMany()
+                        .WithMany("Animals")
                         .HasForeignKey("OwnerId");
 
                     b.HasOne("VeterinaryClinic.Web.JorgePinto.Data.Entities.User", "User")
@@ -622,13 +573,6 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
                     b.Navigation("Owner");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.Animal_Owner", b =>
-                {
-                    b.HasOne("VeterinaryClinic.Web.JorgePinto.Data.Entities.Owner", null)
-                        .WithMany("Animal_Owners")
-                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.Appointment", b =>
@@ -737,17 +681,6 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.User", b =>
-                {
-                    b.HasOne("VeterinaryClinic.Web.JorgePinto.Data.Entities.Animal_Owner", "Animal_Owner")
-                        .WithMany()
-                        .HasForeignKey("Animal_OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Animal_Owner");
-                });
-
             modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.Appointment", b =>
                 {
                     b.Navigation("Items");
@@ -755,7 +688,7 @@ namespace VeterinaryClinic.Web.JorgePinto.Migrations
 
             modelBuilder.Entity("VeterinaryClinic.Web.JorgePinto.Data.Entities.Owner", b =>
                 {
-                    b.Navigation("Animal_Owners");
+                    b.Navigation("Animals");
                 });
 #pragma warning restore 612, 618
         }
